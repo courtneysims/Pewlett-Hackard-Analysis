@@ -47,6 +47,7 @@ FROM employees AS e
 	INNER JOIN titles AS ti
 		ON	e.emp_no = ti.emp_no
 	WHERE (e.birth_date BETWEEN '1965-01-01' AND '1965-12-31')
+	AND (de.to_date = '9999-01-01')
 	ORDER BY emp_no;
 
 --Query to remove duplicate to count total employees
@@ -77,6 +78,7 @@ FROM employees AS e
 	INNER JOIN titles AS ti
 		ON	e.emp_no = ti.emp_no
 	WHERE (e.birth_date BETWEEN '1964-01-01' AND '1964-12-31')
+	AND (de.to_date = '9999-01-01')
 	ORDER BY emp_no;
 	
 
@@ -85,7 +87,8 @@ FROM employees AS e
 Drop table mentorship_eligibility_one_year
 select * from mentorship_eligibility_one_year
 
-
+select count(emp_no) as "count"
+from mentorship_eligibility_one_year
 
 
 
