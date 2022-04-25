@@ -49,3 +49,46 @@ FROM employees AS e
 	WHERE (e.birth_date BETWEEN '1965-01-01' AND '1965-12-31')
 	ORDER BY emp_no;
 
+--Query to remove duplicate to count total employees
+SELECT DISTINCT ON (employees.emp_no) employees.emp_no,
+    employees.first_name,
+    employees.last_name,
+    titles.title,
+    titles.from_date,
+    titles.to_date
+INTO all_employees
+FROM employees
+LEFT JOIN titles
+ON employees.emp_no = titles.emp_no
+ORDER BY employees.emp_no, titles.to_date DESC
+
+--mentorship-eligibiliy for 1 year prior by birth date
+SELECT DISTINCT ON (emp_no) e.emp_no,
+e.first_name,
+e.last_name,
+e.birth_date,
+de.from_date,
+de.to_date,
+ti.title
+INTO mentorship_eligibility_one_year
+FROM employees AS e
+	INNER JOIN dept_emp AS de
+		ON e.emp_no = de.emp_no
+	INNER JOIN titles AS ti
+		ON	e.emp_no = ti.emp_no
+	WHERE (e.birth_date BETWEEN '1964-01-01' AND '1964-12-31')
+	ORDER BY emp_no;
+	
+
+
+
+Drop table mentorship_eligibility_one_year
+select * from mentorship_eligibility_one_year
+
+
+
+
+
+
+
+
