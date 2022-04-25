@@ -105,7 +105,7 @@ FROM employees AS e
 
 
 Drop table mentorship_eligibility_one_year
-select * from mentorship_eligibility
+select * from mentorship_eligibility_one_year
 
 select count(emp_no) as "count"
 from mentorship_eligibility_one_year
